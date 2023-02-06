@@ -14,7 +14,8 @@ from models.base_model import BaseModel
 
 
 class TestBaseModel_Instance(unittest.TestCase):
-    ''' Testing instance(s) of the BaseModel class. '''
+    ''' Test instance(s) of the BaseModel class. '''
+
     def test_no_args_instantiates(self):
         self.assertEqual(BaseModel, type(BaseModel()))
 
@@ -83,6 +84,7 @@ class TestBaseModel_Instance(unittest.TestCase):
 
 class TestBaseModel_Save(unittest.TestCase):
     ''' Test save method of the BaseModel class. '''
+
     def test_one_save(self):
         bm = BaseModel()
         updated_at = bm.updated_at
@@ -107,8 +109,8 @@ class TestBaseModel_Save(unittest.TestCase):
             bm.save(None)
 
 
-class TestBaseModel_to_dict(unittest.TestCase):
-    """Unittests for testing to_dict method of the BaseModel class."""
+class TestBaseModel_To_Dict(unittest.TestCase):
+    ''' Test to_dict method of the BaseModel class. '''
 
     def test_to_dict_type(self):
         bm = BaseModel()

@@ -69,56 +69,6 @@ or to use the non-interactive mode run:
 | **all** | Prints all string representation of all instances based or not on the class name | **all** or **all** \<class_name class_id\> |
 | **update** | Updates an instance based on the class name and id by adding or updating attribute | **update** \<class_name class_id key value\> |
 
-#### Examples
-##### No.1
-
-```
-➜  AirBnB_clone git:(feature) ✗ ./console.py
-(hbnb) create User
-bb4f4b81-7757-460b-9263-743c9ea6fef6
-(hbnb) show User bb4f4b81-7757-460b-9263-743c9ea6fef6
-[User] (bb4f4b81-7757-460b-9263-743c9ea6fef6) {'updated_at': datetime.datetime(2023, 2, 10, 17, 7, 45, 492109), 'id': 'bb4f4b81-7757-460b-9263-743c9ea6fef6', 'created_at': datetime.datetime(2023, 2, 10, 17, 7, 45, 492106)}
-(hbnb) all User
-["[User] (bb4f4b81-7757-460b-9263-743c9ea6fef6) {'updated_at': datetime.datetime(2023, 2, 10, 17, 7, 45, 492109), 'id': 'bb4f4b81-7757-460b-9263-743c9ea6fef6', 'created_at': datetime.datetime(2023, 2, 10, 17, 7, 45, 492106)}"]
-(hbnb) update User bb4f4b81-7757-460b-9263-743c9ea6fef6 name Kaycee
-['User', 'bb4f4b81-7757-460b-9263-743c9ea6fef6', 'name', 'Kaycee']
-(hbnb) all User
-["[User] (bb4f4b81-7757-460b-9263-743c9ea6fef6) {'updated_at': datetime.datetime(2023, 2, 10, 17, 7, 45, 492109), 'id': 'bb4f4b81-7757-460b-9263-743c9ea6fef6', 'name': 'Kaycee', 'created_at': datetime.datetime(2023, 2, 10, 17, 7, 45, 492106)}"]
-(hbnb) destroy User bb4f4b81-7757-460b-9263-743c9ea6fef6
-(hbnb) all User
-[]
-(hbnb) show User
-** instance id missing **
-(hbnb)
-
-```
-
-##### No.2
-
-```
-➜  AirBnB_clone git:(feature) ✗ ./console.py
-(hbnb) User.create
-*** Unknown syntax: User.create
-(hbnb) User.create()
-e6ee5344-04ef-454d-84e4-ba6fc610f1b4
-(hbnb) User.all()
-["[User] (e6ee5344-04ef-454d-84e4-ba6fc610f1b4) {'id': 'e6ee5344-04ef-454d-84e4-ba6fc610f1b4', 'updated_at': datetime.datetime(2023, 2, 10, 17, 14, 1, 963404), 'created_at': datetime.datetime(2023, 2, 10, 17, 14, 1, 963373)}"]
-(hbnb) User.show()
-** instance id missing **
-(hbnb) User.show(e6ee5344-04ef-454d-84e4-ba6fc610f1b4)
-[User] (e6ee5344-04ef-454d-84e4-ba6fc610f1b4) {'id': 'e6ee5344-04ef-454d-84e4-ba6fc610f1b4', 'updated_at': datetime.datetime(2023, 2, 10, 17, 14, 1, 963404), 'created_at': datetime.datetime(2023, 2, 10, 17, 14, 1, 963373)}
-(hbnb) User.update("e6ee5344-04ef-454d-84e4-ba6fc610f1b4", "name", "Kaycee")
-['User', '"e6ee5344-04ef-454d-84e4-ba6fc610f1b4"', '"name"', '"Kaycee"']
-(hbnb) User.all()
-['[User] (e6ee5344-04ef-454d-84e4-ba6fc610f1b4) {\'"name"\': \'"Kaycee"\', \'id\': \'e6ee5344-04ef-454d-84e4-ba6fc610f1b4\', \'updated_at\': datetime.datetime(2023, 2, 10, 17, 14, 1, 963404), \'created_at\': datetime.datetime(2023, 2, 10, 17, 14, 1, 963373)}']
-(hbnb) User.destroy(e6ee5344-04ef-454d-84e4-ba6fc610f1b4)
-(hbnb) User.all()
-[]
-(hbnb) quit
-➜  AirBnB_clone git:(feature) ✗
-
-```
-
 ## Tests
 If you wish to run all the tests for this application,  the tests are located in the **tests/** directory and you can execute all of them by running:
 

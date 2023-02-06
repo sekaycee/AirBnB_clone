@@ -2,7 +2,7 @@
 ![HBnB](./hbnb.png)
 
 ## Synopsis
-This is the initial phase of a four-phase project. Aim to create a basic clone of the [AirBnB](https://airbnb.com) web app. In this initial phase, a basic console was created using the Cmd Python module. To manage the objects of the whole project. It's able to implement the methods create, show, update, all, and destroy, to the existing classes and subclasses.
+This is the initial phase of a four-phase project. Aiming to create a basic clone of the [AirBnB](https://airbnb.com) web app. In this initial phase, a basic console was created using the Cmd Python module. To manage the objects of the whole project. It's able to implement the methods create, show, update, all, and destroy, to the existing classes and subclasses.
 
 ## Technologies
 * Scripts are written in Python3
@@ -122,6 +122,6 @@ e6ee5344-04ef-454d-84e4-ba6fc610f1b4
 ## Tests
 If you wish to run all the tests for this application,  the tests are located in the **tests/** directory and you can execute all of them by running:
 
-```python3 -m unittest discover tests ```
+```$ python3 -m unittest discover tests ```
 
 from the root directory.

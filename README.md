@@ -1,4 +1,5 @@
 # AirBnB Clone [![License: MIT]
+(https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/sekaycee/AirBnB_clone/blob/master/LICENSE) [![Build Status](https://travis-ci.org/sekaycee/AirBnB_clone.svg?branch=master)](https://travis-ci.org/sekaycee/AirBnB_clone)
 ![HBnB](./hbnb.png)
 
 ## Synopsis

@@ -14,6 +14,13 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
+        else:
+            f = '%Y-%m-%dT%H:%M:%S.%f'
+            for key, value in kwargs.items():
+                if key == 'created_at' or key == 'updated_at':
+                    value = datetime.strptime(kwargs[key], f)
+                if key != '__class__':
+                    setattr(self, key, value)
     
     def __str__(self):
         ''' Override default implementation of __str__ method '''
@@ -26,8 +33,14 @@ class BaseModel:
 
     def to_dict(self):
         ''' Return a new dictionary with key and strformatted datetime '''
-        tmp = {**self.__dict__}
-        tmp['__class__'] = type(self).__name__
-        tmp['created_at'] = self.created_at.strftime('%Y-%m-%dT%H:%M:%S.%f')
-        tmp['updated_at'] = self.updated_at.strftime('%Y-%m-%dT%H:%M:%S.%f')
-        return (tmp)
+        dict_ = {}
+        for key, value in self.__dict__.items():
+            if key == 'created_at' or key == 'updated_at':
+                dict_[key] = value.strftime('%Y-%m-%dT%H:%M:%S.%f')
+            else:
+                if not value:
+                    pass
+                else:
+                    dict_[key] = value
+        dict_['__class__'] = type(self).__name__
+        return (dict_)

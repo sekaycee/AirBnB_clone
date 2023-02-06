@@ -2,7 +2,7 @@
 ''' BaseModel module.. form the baseclass for other project models '''
 
 from uuid import uuid4
-from models import storage
+# from models import storage
 from datetime import datetime
 
 
@@ -26,9 +26,8 @@ class BaseModel:
 
     def to_dict(self):
         ''' Return a new dictionary with key and strformatted datetime '''
-        new_dict = {}
-        for key, values in self.__dict__.items():
-            if key == 'created_at' or key == 'updated_at':
-                new_dict[key] = values.strftime('%Y-%m-%dT%H:%M:%S.%f')
-        new_dict['__class__'] = type(self).__name__
-        return (new_dict)
+        tmp = {**self.__dict__}
+        tmp['__class__'] = type(self).__name__
+        tmp['created_at'] = self.created_at.strftime('%Y-%m-%dT%H:%M:%S.%f')
+        tmp['updated_at'] = self.updated_at.strftime('%Y-%m-%dT%H:%M:%S.%f')
+        return (tmp)

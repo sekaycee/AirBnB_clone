@@ -69,6 +69,21 @@ or to use the non-interactive mode run:
 | **all** | Prints all string representation of all instances based or not on the class name | **all** or **all** \<class_name class_id\> |
 | **update** | Updates an instance based on the class name and id by adding or updating attribute | **update** \<class_name class_id key value\> |
 
+#### Examples
+##### No 1
+~/alx/AirBnB_clone $ ./console.py
+(hbnb) all
+["[User] (2b5d955b-c752-45a0-b663-9297755abf6a) {'id': '2b5d955b-c752-45a0-b663-9297755abf6a', 'created_at': datetime.datetime(2023, 2, 7, 14, 27, 19, 635906), 'updated_at': datetime.datetime(2023, 2, 7, 14, 27, 19, 636186)}"]
+(hbnb) update User 2b5d955b-c752-45a0-b663-9297755abf6a email sekaycee@gmail.com
+(hbnb) all
+["[User] (2b5d955b-c752-45a0-b663-9297755abf6a) {'id': '2b5d955b-c752-45a0-b663-9297755abf6a', 'created_at': datetime.datetime(2023, 2, 7, 14, 27, 19, 635906), 'updated_at': datetime.datetime(2023, 2, 7, 14, 34, 15, 993791), 'email': 'sekaycee@gmail.com'}"]
+(hbnb) create Place
+61c1b500-bbf6-40f0-980d-459619d3cc25
+(hbnb) all
+["[User] (2b5d955b-c752-45a0-b663-9297755abf6a) {'id': '2b5d955b-c752-45a0-b663-9297755abf6a', 'created_at': datetime.datetime(2023, 2, 7, 14, 27, 19, 635906), 'updated_at': datetime.datetime(2023, 2, 7, 14, 34, 15, 993791), 'email': 'sekaycee@gmail.com'}", "[Place] (61c1b500-bbf6-40f0-980d-459619d3cc25) {'id': '61c1b500-bbf6-40f0-980d-459619d3cc25', 'created_at': datetime.datetime(2023, 2, 7, 14, 35, 2, 258984), 'updated_at': datetime.datetime(2023, 2, 7, 14, 35, 2, 259186)}"]
+(hbnb) quit
+~/alx/AirBnB_clone $
+
 ## Tests
 If you wish to run all the tests for this application,  the tests are located in the **tests/** directory and you can execute all of them by running:
 

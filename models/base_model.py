@@ -15,10 +15,9 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = self.created_at
         else:
-            f = '%Y-%m-%dT%H:%M:%S.%f'
             for key, value in kwargs.items():
                 if key == 'created_at' or key == 'updated_at':
-                    value = datetime.strptime(kwargs[key], f)
+                    value = datetime.fromisoformat(kwargs[key])
                 if key != '__class__':
                     setattr(self, key, value)
     
@@ -36,7 +35,7 @@ class BaseModel:
         dict_ = {}
         for key, value in self.__dict__.items():
             if key == 'created_at' or key == 'updated_at':
-                dict_[key] = value.strftime('%Y-%m-%dT%H:%M:%S.%f')
+                dict_[key] = value.isoformat()
             else:
                 if not value:
                     pass

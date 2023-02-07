@@ -52,20 +52,20 @@ class TestBaseModel_Instance(unittest.TestCase):
     def test_instantiation_with_kwargs(self):
         dt = datetime.today()
         dt_iso = dt.isoformat()
-        bm = BaseModel(id="345", created_at=dt_iso, updated_at=dt_iso)
-        self.assertEqual(bm.id, "345")
+        bm = BaseModel(id='345', created_at=dt_iso, updated_at=dt_iso)
+        self.assertEqual(bm.id, '345')
         self.assertEqual(bm.created_at, dt)
         self.assertEqual(bm.updated_at, dt)
 
-    def test_instantiation_with_None_kwargs(self):
+    def test_instantiation_with_kwargs_None(self):
         with self.assertRaises(TypeError):
             BaseModel(id=None, created_at=None, updated_at=None)
 
     def test_instantiation_with_args_and_kwargs(self):
         dt = datetime.today()
         dt_iso = dt.isoformat()
-        bm = BaseModel("12", id="345", created_at=dt_iso, updated_at=dt_iso)
-        self.assertEqual(bm.id, "345")
+        bm = BaseModel('12', id='345', created_at=dt_iso, updated_at=dt_iso)
+        self.assertEqual(bm.id, '345')
         self.assertEqual(bm.created_at, dt)
         self.assertEqual(bm.updated_at, dt)
 
@@ -73,17 +73,38 @@ class TestBaseModel_Instance(unittest.TestCase):
         dt = datetime.today()
         dt_repr = repr(dt)
         bm = BaseModel()
-        bm.id = "123456"
+        bm.id = '123456'
         bm.created_at = bm.updated_at = dt
         bm_str = bm.__str__()
-        self.assertIn("[BaseModel] (123456)", bm_str)
-        self.assertIn("'id': '123456'", bm_str)
-        self.assertIn("'created_at': " + dt_repr, bm_str)
-        self.assertIn("'updated_at': " + dt_repr, bm_str)
+        self.assertIn('[BaseModel] (123456)', bm_str)
+        self.assertIn(''id': '123456'', bm_str)
+        self.assertIn(''created_at': ' + dt_repr, bm_str)
+        self.assertIn(''updated_at': ' + dt_repr, bm_str)
+
+    def test_is_new_instance_stored_in_objects(self):
+        self.assertIn(BaseModel(), models.storage.all().values())
 
 
 class TestBaseModel_Save(unittest.TestCase):
     ''' Test save method of the BaseModel class. '''
+
+    @classmethod
+    def set_up(self):
+        try:
+            os.rename("file.json", "tmp")
+        except IOError:
+            pass
+
+    @classmethod
+    def tear_down(self):
+        try:
+            os.remove("file.json")
+        except IOError:
+            pass
+        try:
+            os.rename("tmp", "file.json")
+        except IOError:
+            pass
 
     def test_one_save(self):
         bm = BaseModel()
@@ -108,6 +129,13 @@ class TestBaseModel_Save(unittest.TestCase):
         with self.assertRaises(TypeError):
             bm.save(None)
 
+    def test_save_updates_file(self):
+        bm = BaseModel()
+        bm.save()
+        bm_id = 'BaseModel.' + bm.id
+        with open('file.json', 'r') as f:
+            self.assertIn(bm_id, f.read())
+
 
 class TestBaseModel_To_Dict(unittest.TestCase):
     ''' Test to_dict method of the BaseModel class. '''
@@ -118,28 +146,28 @@ class TestBaseModel_To_Dict(unittest.TestCase):
 
     def test_to_dict_contains_correct_keys(self):
         bm = BaseModel()
-        self.assertIn("id", bm.to_dict())
-        self.assertIn("created_at", bm.to_dict())
-        self.assertIn("updated_at", bm.to_dict())
-        self.assertIn("__class__", bm.to_dict())
+        self.assertIn('id', bm.to_dict())
+        self.assertIn('created_at', bm.to_dict())
+        self.assertIn('updated_at', bm.to_dict())
+        self.assertIn('__class__', bm.to_dict())
 
     def test_to_dict_contains_added_attributes(self):
         bm = BaseModel()
-        bm.name = "Holberton"
-        bm.my_number = 98
-        self.assertIn("name", bm.to_dict())
-        self.assertIn("my_number", bm.to_dict())
+        bm.name = 'Kay Cee'
+        bm.number = 92
+        self.assertIn('name', bm.to_dict())
+        self.assertIn('number', bm.to_dict())
 
     def test_to_dict_datetime_attributes_are_strs(self):
         bm = BaseModel()
         bm_dict = bm.to_dict()
-        self.assertEqual(str, type(bm_dict["created_at"]))
-        self.assertEqual(str, type(bm_dict["updated_at"]))
+        self.assertEqual(str, type(bm_dict['created_at']))
+        self.assertEqual(str, type(bm_dict['updated_at']))
 
     def test_to_dict_output(self):
         dt = datetime.today()
         bm = BaseModel()
-        bm.id = "123456"
+        bm.id = '123456'
         bm.created_at = bm.updated_at = dt
         dict_ = {
             'id': '123456',
@@ -159,5 +187,5 @@ class TestBaseModel_To_Dict(unittest.TestCase):
             bm.to_dict(None)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

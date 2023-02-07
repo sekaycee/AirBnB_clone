@@ -71,18 +71,45 @@ or to use the non-interactive mode run:
 
 #### Examples
 ##### No 1
-~/alx/AirBnB_clone $ ./console.py
-(hbnb) all
-["[User] (2b5d955b-c752-45a0-b663-9297755abf6a) {'id': '2b5d955b-c752-45a0-b663-9297755abf6a', 'created_at': datetime.datetime(2023, 2, 7, 14, 27, 19, 635906), 'updated_at': datetime.datetime(2023, 2, 7, 14, 27, 19, 636186)}"]
-(hbnb) update User 2b5d955b-c752-45a0-b663-9297755abf6a email sekaycee@gmail.com
-(hbnb) all
-["[User] (2b5d955b-c752-45a0-b663-9297755abf6a) {'id': '2b5d955b-c752-45a0-b663-9297755abf6a', 'created_at': datetime.datetime(2023, 2, 7, 14, 27, 19, 635906), 'updated_at': datetime.datetime(2023, 2, 7, 14, 34, 15, 993791), 'email': 'sekaycee@gmail.com'}"]
-(hbnb) create Place
-61c1b500-bbf6-40f0-980d-459619d3cc25
-(hbnb) all
-["[User] (2b5d955b-c752-45a0-b663-9297755abf6a) {'id': '2b5d955b-c752-45a0-b663-9297755abf6a', 'created_at': datetime.datetime(2023, 2, 7, 14, 27, 19, 635906), 'updated_at': datetime.datetime(2023, 2, 7, 14, 34, 15, 993791), 'email': 'sekaycee@gmail.com'}", "[Place] (61c1b500-bbf6-40f0-980d-459619d3cc25) {'id': '61c1b500-bbf6-40f0-980d-459619d3cc25', 'created_at': datetime.datetime(2023, 2, 7, 14, 35, 2, 258984), 'updated_at': datetime.datetime(2023, 2, 7, 14, 35, 2, 259186)}"]
+➜  AirBnB_clone git:(feature) ✗ ./console.py
+(hbnb) create User
+bb4f4b81-7757-460b-9263-743c9ea6fef6
+(hbnb) show User bb4f4b81-7757-460b-9263-743c9ea6fef6
+[User] (bb4f4b81-7757-460b-9263-743c9ea6fef6) {'updated_at': datetime.datetime(2023, 2, 10, 17, 7, 45, 492109), 'id': 'bb4f4b81-7757-460b-9263-743c9ea6fef6', 'created_at': datetime.datetime(2023, 2, 10, 17, 7, 45, 492106)}
+(hbnb) all User
+["[User] (bb4f4b81-7757-460b-9263-743c9ea6fef6) {'updated_at': datetime.datetime(2023, 2, 10, 17, 7, 45, 492109), 'id': 'bb4f4b81-7757-460b-9263-743c9ea6fef6', 'created_at': datetime.datetime(2023, 2, 10, 17, 7, 45, 492106)}"]
+(hbnb) update User bb4f4b81-7757-460b-9263-743c9ea6fef6 name Betty
+['User', 'bb4f4b81-7757-460b-9263-743c9ea6fef6', 'name', 'Betty']
+(hbnb) all User
+["[User] (bb4f4b81-7757-460b-9263-743c9ea6fef6) {'updated_at': datetime.datetime(2023, 2, 10, 17, 7, 45, 492109), 'id': 'bb4f4b81-7757-460b-9263-743c9ea6fef6', 'name': 'Betty', 'created_at': datetime.datetime(2023, 2, 10, 17, 7, 45, 492106)}"]
+(hbnb) destroy User bb4f4b81-7757-460b-9263-743c9ea6fef6
+(hbnb) all User
+[]
+(hbnb) show User
+** instance id missing **
+(hbnb)
+
+##### No 2
+➜  AirBnB_clone git:(feature) ✗ ./console.py
+(hbnb) User.create
+*** Unknown syntax: User.create
+(hbnb) User.create()
+e6ee5344-04ef-454d-84e4-ba6fc610f1b4
+(hbnb) User.all()
+["[User] (e6ee5344-04ef-454d-84e4-ba6fc610f1b4) {'id': 'e6ee5344-04ef-454d-84e4-ba6fc610f1b4', 'updated_at': datetime.datetime(2023, 2, 10, 17, 14, 1, 963404), 'created_at': datetime.datetime(2023, 2, 10, 17, 14, 1, 963373)}"]
+(hbnb) User.show()
+** instance id missing **
+(hbnb) User.show(e6ee5344-04ef-454d-84e4-ba6fc610f1b4)
+[User] (e6ee5344-04ef-454d-84e4-ba6fc610f1b4) {'id': 'e6ee5344-04ef-454d-84e4-ba6fc610f1b4', 'updated_at': datetime.datetime(2023, 2, 10, 17, 14, 1, 963404), 'created_at': datetime.datetime(2023, 2, 10, 17, 14, 1, 963373)}
+(hbnb) User.update("e6ee5344-04ef-454d-84e4-ba6fc610f1b4", "name", "Betty")
+['User', '"e6ee5344-04ef-454d-84e4-ba6fc610f1b4"', '"name"', '"Betty"']
+(hbnb) User.all()
+['[User] (e6ee5344-04ef-454d-84e4-ba6fc610f1b4) {\'"name"\': \'"Betty"\', \'id\': \'e6ee5344-04ef-454d-84e4-ba6fc610f1b4\', \'updated_at\': datetime.datetime(2023, 2, 10, 17, 14, 1, 963404), \'created_at\': datetime.datetime(2023, 2, 10, 17, 14, 1, 963373)}']
+(hbnb) User.destroy(e6ee5344-04ef-454d-84e4-ba6fc610f1b4)
+(hbnb) User.all()
+[]
 (hbnb) quit
-~/alx/AirBnB_clone $
+➜  AirBnB_clone git:(feature) ✗
 
 ## Tests
 If you wish to run all the tests for this application,  the tests are located in the **tests/** directory and you can execute all of them by running:

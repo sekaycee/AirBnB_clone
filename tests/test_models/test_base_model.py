@@ -77,9 +77,9 @@ class TestBaseModel_Instance(unittest.TestCase):
         bm.created_at = bm.updated_at = dt
         bm_str = bm.__str__()
         self.assertIn('[BaseModel] (123456)', bm_str)
-        self.assertIn(''id': '123456'', bm_str)
-        self.assertIn(''created_at': ' + dt_repr, bm_str)
-        self.assertIn(''updated_at': ' + dt_repr, bm_str)
+        self.assertIn("'id': '123456'", bm_str)
+        self.assertIn("'created_at': " + dt_repr, bm_str)
+        self.assertIn("'updated_at': " + dt_repr, bm_str)
 
     def test_is_new_instance_stored_in_objects(self):
         self.assertIn(BaseModel(), models.storage.all().values())
@@ -91,18 +91,18 @@ class TestBaseModel_Save(unittest.TestCase):
     @classmethod
     def set_up(self):
         try:
-            os.rename("file.json", "tmp")
+            os.rename('file.json', 'tmp')
         except IOError:
             pass
 
     @classmethod
     def tear_down(self):
         try:
-            os.remove("file.json")
+            os.remove('file.json')
         except IOError:
             pass
         try:
-            os.rename("tmp", "file.json")
+            os.rename('tmp', 'file.json')
         except IOError:
             pass
 

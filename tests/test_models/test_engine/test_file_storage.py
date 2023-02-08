@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 ''' Define unittests for models/engine/file_storage.py.
 Unittest classes:
-    TestFileStorage_instantiation
-    TestFileStorage_methods
+    TestFileStorage_Instance
+    TestFileStorage_Methods
 '''
 import os
 import json
@@ -19,7 +19,7 @@ from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
 
-class TestFileStorage_instantiation(unittest.TestCase):
+class TestFileStorage_Instance(unittest.TestCase):
     ''' Test instantiation of the FileStorage class '''
 
     def test_FileStorage_instantiation_no_args(self):
@@ -39,7 +39,7 @@ class TestFileStorage_instantiation(unittest.TestCase):
         self.assertEqual(type(storage), FileStorage)
 
 
-class TestFileStorage_methods(unittest.TestCase):
+class TestFileStorage_Methods(unittest.TestCase):
     ''' Test methods of the FileStorage class '''
 
     @classmethod
@@ -62,15 +62,15 @@ class TestFileStorage_methods(unittest.TestCase):
         FileStorage._FileStorage__objects = {}
 
     def t_helper(self):
-        m_dict = { bm: BaseModel() , us: User(), st: State(), pl: Place()
-                , cy: City(), am: Amenity(), rv: Review() }
-        storage.new(m_dict.bm)
-        storage.new(m_dict.us)
-        storage.new(m_dict.st)
-        storage.new(m_dict.pl)
-        storage.new(m_dict.cy)
-        storage.new(m_dict.am)
-        storage.new(m_dict.rv)
+        m_dict = { 'bm': BaseModel(), 'us': User(), 'st': State()
+            , 'pl': Place(), 'cy': City(), 'am': Amenity(), 'rv': Review() }
+        storage.new(m_dict['bm'])
+        storage.new(m_dict['us'])
+        storage.new(m_dict['st'])
+        storage.new(m_dict['pl'])
+        storage.new(m_dict['cy'])
+        storage.new(m_dict['am'])
+        storage.new(m_dict['rv'])
         return (m_dict)
 
     def test_all(self):
@@ -82,20 +82,20 @@ class TestFileStorage_methods(unittest.TestCase):
 
     def test_new(self):
         m_dict = self.t_helper()
-        self.assertIn('BaseModel.' + m_dict.bm.id, storage.all().keys())
-        self.assertIn(m_dict.bm, storage.all().values())
-        self.assertIn('User.' + m_dict.us.id, storage.all().keys())
-        self.assertIn(m_dict.us, storage.all().values())
-        self.assertIn('State.' + m_dict.st.id, storage.all().keys())
-        self.assertIn(m_dict.st, storage.all().values())
-        self.assertIn('Place.' + m_dict.pl.id, storage.all().keys())
-        self.assertIn(m_dict.pl, storage.all().values())
-        self.assertIn('City.' + m_dict.cy.id, storage.all().keys())
-        self.assertIn(m_dict.cy, storage.all().values())
-        self.assertIn('Amenity.' + m_dict.am.id, storage.all().keys())
-        self.assertIn(m_dict.am, storage.all().values())
-        self.assertIn('Review.' + m_dict.rv.id, storage.all().keys())
-        self.assertIn(m_dict.rv, storage.all().values())
+        self.assertIn('BaseModel.' + m_dict['bm'].id, storage.all().keys())
+        self.assertIn(m_dict['bm'], storage.all().values())
+        self.assertIn('User.' + m_dict['us'].id, storage.all().keys())
+        self.assertIn(m_dict['us'], storage.all().values())
+        self.assertIn('State.' + m_dict['st'].id, storage.all().keys())
+        self.assertIn(m_dict['st'], storage.all().values())
+        self.assertIn('Place.' + m_dict['pl'].id, storage.all().keys())
+        self.assertIn(m_dict['pl'], storage.all().values())
+        self.assertIn('City.' + m_dict['cy'].id, storage.all().keys())
+        self.assertIn(m_dict['cy'], storage.all().values())
+        self.assertIn('Amenity.' + m_dict['am'].id, storage.all().keys())
+        self.assertIn(m_dict['am'], storage.all().values())
+        self.assertIn('Review.' + m_dict['rv'].id, storage.all().keys())
+        self.assertIn(m_dict['rv'], storage.all().values())
 
     def test_new_with_args(self):
         with self.assertRaises(TypeError):
@@ -107,13 +107,13 @@ class TestFileStorage_methods(unittest.TestCase):
         save_text = ''
         with open('file.json', 'r') as f:
             save_text = f.read()
-            self.assertIn('BaseModel.' + m_dict.bm.id, save_text)
-            self.assertIn('User.' + m_dict.us.id, save_text)
-            self.assertIn('State.' + m_dict.st.id, save_text)
-            self.assertIn('Place.' + m_dict.pl.id, save_text)
-            self.assertIn('City.' + m_dict.cy.id, save_text)
-            self.assertIn('Amenity.' + m_dict.am.id, save_text)
-            self.assertIn('Review.' + m_dict.rv.id, save_text)
+            self.assertIn('BaseModel.' + m_dict['bm'].id, save_text)
+            self.assertIn('User.' + m_dict['us'].id, save_text)
+            self.assertIn('State.' + m_dict['st'].id, save_text)
+            self.assertIn('Place.' + m_dict['pl'].id, save_text)
+            self.assertIn('City.' + m_dict['cy'].id, save_text)
+            self.assertIn('Amenity.' + m_dict['am'].id, save_text)
+            self.assertIn('Review.' + m_dict['rv'].id, save_text)
 
     def test_save_with_arg(self):
         with self.assertRaises(TypeError):
@@ -124,13 +124,13 @@ class TestFileStorage_methods(unittest.TestCase):
         storage.save()
         storage.reload()
         objs = FileStorage._FileStorage__objects
-        self.assertIn('BaseModel.' + m_dict.bm.id, objs)
-        self.assertIn('User.' + m_dict.us.id, objs)
-        self.assertIn('State.' + m_dict.st.id, objs)
-        self.assertIn('Place.' + m_dict.pl.id, objs)
-        self.assertIn('City.' + m_dict.cy.id, objs)
-        self.assertIn('Amenity.' + m_dict.am.id, objs)
-        self.assertIn('Review.' + m_dict.rv.id, objs)
+        self.assertIn('BaseModel.' + m_dict['bm'].id, objs)
+        self.assertIn('User.' + m_dict['us'].id, objs)
+        self.assertIn('State.' + m_dict['st'].id, objs)
+        self.assertIn('Place.' + m_dict['pl'].id, objs)
+        self.assertIn('City.' + m_dict['cy'].id, objs)
+        self.assertIn('Amenity.' + m_dict['am'].id, objs)
+        self.assertIn('Review.' + m_dict['rv'].id, objs)
 
     def test_reload_with_arg(self):
         with self.assertRaises(TypeError):

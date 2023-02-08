@@ -20,6 +20,18 @@ class HBNBCommand(Cmd):
 
     # public class attributes
     prompt = '(hbnb) '
+    cmds = ['create', 'show', 'update', 'all', 'destroy', 'count']
+
+    def precmd(self, arg):
+        ''' Parse command input '''
+        H = HBNBCommand
+        if '.' in arg and '(' in arg and ')' in arg:
+            cls = arg.split('.')
+            cnd = cls[1].split('(')
+            args = cnd[1].split(')')
+            if cls[0] in clist and cnd[0] in H.cmds:
+                arg = cnd[0] + ' ' + cls[0] + ' ' + args[0]
+        return (arg)
 
     def do_quit(self, line):
         ''' Quit command to exit the command interpreter '''
@@ -138,6 +150,16 @@ class HBNBCommand(Cmd):
                 print("** class doesn't exist **")
             except InstanceNotFoundError:
                 print("** no instance found **")
+
+    def do_count(self, cname):
+        ''' Retreive the number of instances of a class '''
+        count = 0
+        objs_ = storage.all()
+        for k, v in objs_.items():
+            c = k.split('.') # c: list with class name and id
+            if c[0] == cname:
+                count += 1
+        print(count)
 
 
 def parse(line: str):

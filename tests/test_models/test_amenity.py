@@ -38,21 +38,21 @@ class TestAmenity_Instance(unittest.TestCase):
         self.assertNotIn('name', am.__dict__)
 
     def test_two_amenities_unique_ids(self):
-        am1 = Amenity()
-        am2 = Amenity()
-        self.assertNotEqual(am1.id, am2.id)
+        f_am = Amenity()
+        s_am = Amenity()
+        self.assertNotEqual(f_am.id, s_am.id)
 
     def test_two_amenities_different_created_at(self):
-        am1 = Amenity()
+        f_am = Amenity()
         sleep(0.05)
-        am2 = Amenity()
-        self.assertLess(am1.created_at, am2.created_at)
+        s_am = Amenity()
+        self.assertLess(f_am.created_at, s_am.created_at)
 
     def test_two_amenities_different_updated_at(self):
-        am1 = Amenity()
+        f_am = Amenity()
         sleep(0.05)
-        am2 = Amenity()
-        self.assertLess(am1.updated_at, am2.updated_at)
+        s_am = Amenity()
+        self.assertLess(f_am.updated_at, s_am.updated_at)
 
     def test_str_representation(self):
         dt = datetime.today()
@@ -88,13 +88,13 @@ class TestAmenity_Save(unittest.TestCase):
     ''' Test save method of the Amenity class '''
 
     @classmethod
-    def set_up(self):
+    def setUp(self):
         try:
             os.rename('file.json', 'tmp')
         except IOError:
             pass
 
-    def tear_down(self):
+    def tearDown(self):
         try:
             os.remove('file.json')
         except IOError:

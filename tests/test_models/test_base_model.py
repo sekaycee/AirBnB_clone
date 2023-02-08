@@ -14,7 +14,7 @@ from models.base_model import BaseModel
 
 
 class TestBaseModel_Instance(unittest.TestCase):
-    ''' Test instance(s) of the BaseModel class. '''
+    ''' Test instance(s) of the BaseModel class '''
 
     def test_no_args_instantiates(self):
         self.assertEqual(BaseModel, type(BaseModel()))
@@ -86,17 +86,17 @@ class TestBaseModel_Instance(unittest.TestCase):
 
 
 class TestBaseModel_Save(unittest.TestCase):
-    ''' Test save method of the BaseModel class. '''
+    ''' Test save method of the BaseModel class '''
 
     @classmethod
-    def set_up(self):
+    def setUp(self):
         try:
             os.rename('file.json', 'tmp')
         except IOError:
             pass
 
     @classmethod
-    def tear_down(self):
+    def tearDown(self):
         try:
             os.remove('file.json')
         except IOError:
@@ -138,7 +138,7 @@ class TestBaseModel_Save(unittest.TestCase):
 
 
 class TestBaseModel_To_Dict(unittest.TestCase):
-    ''' Test to_dict method of the BaseModel class. '''
+    ''' Test to_dict method of the BaseModel class '''
 
     def test_to_dict_type(self):
         bm = BaseModel()

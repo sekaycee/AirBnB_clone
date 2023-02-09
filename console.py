@@ -50,7 +50,7 @@ class HBNBCommand(Cmd):
         $ create ModelName
         Throw an Error if ModelName is missing or doesn't exist
         '''
-        args, n = parse(args)
+        args, n = parse(args, ' ')
 
         if not n:
             print("** class name missing **")
@@ -70,7 +70,7 @@ class HBNBCommand(Cmd):
         Print error message if either MyModel or instance_id is missing
         Print an Error message for wrong MyModel or instance_id
         '''
-        args, n = parse(arg)
+        args, n = parse(arg, ' ')
 
         if not n:
             print("** class name missing **")
@@ -94,7 +94,7 @@ class HBNBCommand(Cmd):
         Print error message if either MyModel or instance_id is missing
         Print an Error message for wrong MyModel or instance_id
         '''
-        args, n = parse(arg)
+        args, n = parse(arg, ' ')
 
         if not n:
             print("** class name missing **")
@@ -117,7 +117,7 @@ class HBNBCommand(Cmd):
         $ all MyModel
         if MyModel is passed returns only instances of MyModel
         '''
-        args, n = parse(args)
+        args, n = parse(args, ' ')
 
         if n < 2:
             try:
@@ -133,8 +133,21 @@ class HBNBCommand(Cmd):
         $ update Model id field value
         Print errors for missing arguments
         '''
-        args, n = parse(arg)
+        if '{' in arg:
+            od_str = '{'
+            ods = arg.split('{')
+            od_str += ods[1]
+            args, n = parse(ods[0], ',')
+            args.append(od_str)
+            try:
+                storage.edit_by_dict(*args[0:3])
+                return
+            except ModelNotFoundError:
+                print("** class doesn't exist **")
+            except InstanceNotFoundError:
+                print("** no instance found **")
 
+        args, n = parse(arg, ',')
         if not n:
             print("** class name missing **")
         elif n == 1:
@@ -162,9 +175,15 @@ class HBNBCommand(Cmd):
         print(count)
 
 
-def parse(line: str):
-    ''' Split a line by spaces '''
-    args = shlex.split(line)
+def parse(line, sep):
+    ''' Split a line by commas or spaces '''
+    if sep == ',':
+        a = ''
+        for av in line.split(sep):
+            a += av
+        args = shlex.split(a)
+    else:
+        args = line.split(sep)
     return args, len(args)
 
 

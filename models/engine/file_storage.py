@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-''' Module serializes and deserializes objances to/from a JSON file '''
+''' Module serializes and deserializes instances to/from a JSON file '''
 import os
 import json
 from datetime import datetime
@@ -18,7 +18,7 @@ class FileStorage:
         ''' Constructor for the class '''
         pass
 
-    # public objance methods
+    # public instance methods
     def all(self):
         ''' Return dictionary __objects '''
         return (FileStorage.__objects)
@@ -82,7 +82,7 @@ class FileStorage:
         self.save()
 
     def get_all(self, model=''):
-        ''' Find all objances or instances of given model '''
+        ''' Find all instances or instances of given model '''
         F = FileStorage
         if model and model not in F.models:
             raise ModelNotFoundError(model)
@@ -93,7 +93,7 @@ class FileStorage:
         return result
 
     def edit_one(self, model, o_id, field, value):
-        ''' Update an objance '''
+        ''' Update an instance '''
         F = FileStorage
         if model not in F.models:
             raise ModelNotFoundError(model)
@@ -115,3 +115,28 @@ class FileStorage:
         finally:
             obj.updated_at = datetime.now()
             self.save()
+
+    def edit_by_dict(self, model, o_id, o_dict):
+        ''' Update an instance using a dictionary '''
+        F = FileStorage
+        if model not in F.models:
+            raise ModelNotFoundError(model)
+
+        key = model + '.' + o_id
+        od = eval(o_dict)
+        # obj = self.all()[key]
+        obj = F.__objects[key]
+        for k, v in od.items():
+            if k in ('id', 'updated_at' , 'created_at'):
+                # update not allowed for these attributes
+                return
+            try:
+                val_t = type(obj.__dict__[k])
+                obj.__dict__[k] = val_t(v)
+            except KeyError:
+                # object doesn't has the field..
+                # assign the value with its type
+                obj.__dict__[k] = v
+            finally:
+                obj.updated_at = datetime.now()
+                self.save()

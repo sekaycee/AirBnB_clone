@@ -54,8 +54,8 @@ class FileStorage:
                     self.new(d_dict[val['__class__']](**val))
 
     ## crud methods to be invoked by the client (web/console)
-    def get_by_id(self, model, o_id):
-        ''' Find and return an element of model by its id '''
+    def key_helper(self, model, o_id):
+        ''' Find and return a key to an element of model by its id '''
         F = FileStorage
         if model not in F.models:
             # invalid model name.. not yet implemented
@@ -65,26 +65,25 @@ class FileStorage:
         if key not in F.__objects:
             # invalid id.. not yet implemented
             raise InstanceNotFoundError(o_id, model)
+        return (key)
 
+    def get_by_id(self, model, o_id):
+        ''' Find and return an element of model by its id '''
+        F = FileStorage
+        key = self.key_helper(model, o_id)
         return F.__objects[key]
 
     def remove_by_id(self, model, o_id):
         ''' Find and delete an element of model by its id '''
         F = FileStorage
-        if model not in F.models:
-            raise ModelNotFoundError(model)
-
-        key = model + '.' + o_id
-        if key not in F.__objects:
-            raise InstanceNotFoundError(o_id, model)
-
+        key = key_helper(model, o_id)
         del F.__objects[key]
         self.save()
 
     def get_all(self, model=''):
         ''' Find all instances or instances of given model '''
         F = FileStorage
-        if model and model not in F.models:
+        if model and mo7del not in F.models:
             raise ModelNotFoundError(model)
         result = []
         for key, val in F.__objects.items():
@@ -95,12 +94,7 @@ class FileStorage:
     def edit_one(self, model, o_id, field, value):
         ''' Update an instance '''
         F = FileStorage
-        if model not in F.models:
-            raise ModelNotFoundError(model)
-
-        key = model + '.' + o_id
-        if key not in F.__objects:
-            raise InstanceNotFoundError(o_id, model)
+        key = key_helper(model, o_id)
         if field in ('id', 'updated_at', 'created_at'):
             # not allowed to be updated
             return

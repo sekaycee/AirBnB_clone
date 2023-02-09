@@ -118,25 +118,6 @@ class FileStorage:
 
     def edit_by_dict(self, model, o_id, o_dict):
         ''' Update an instance using a dictionary '''
-        F = FileStorage
-        if model not in F.models:
-            raise ModelNotFoundError(model)
-
-        key = model + '.' + o_id
         od = eval(o_dict)
-        # obj = self.all()[key]
-        obj = F.__objects[key]
         for k, v in od.items():
-            if k in ('id', 'updated_at' , 'created_at'):
-                # update not allowed for these attributes
-                return
-            try:
-                val_t = type(obj.__dict__[k])
-                obj.__dict__[k] = val_t(v)
-            except KeyError:
-                # object doesn't has the field..
-                # assign the value with its type
-                obj.__dict__[k] = v
-            finally:
-                obj.updated_at = datetime.now()
-                self.save()
+            self.edit_one(model, o_id, k, v)

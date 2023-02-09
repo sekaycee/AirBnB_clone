@@ -112,6 +112,25 @@ e6ee5344-04ef-454d-84e4-ba6fc610f1b4
 ➜  AirBnB_clone git:(feature) ✗
 ```
 
+##### No 3
+```
+~/alx/AirBnB_clone $ ./console.py
+(hbnb) create User
+44e2b0b4-c894-4bed-9b63-57ea8d16a5d5
+(hbnb) User.create()
+68397696-0346-4baf-a6d7-19bb09791751
+(hbnb) all
+["[User] (44e2b0b4-c894-4bed-9b63-57ea8d16a5d5) {'id': '44e2b0b4-c894-4bed-9b63-57ea8d16a5d5', 'created_at': datetime.datetime(2023, 2, 9, 12, 56, 24, 237836), 'updated_at': datetime.datetime(2023, 2, 9, 12, 56, 24, 238250)}", "[User] (68397696-0346-4baf-a6d7-19bb09791751) {'id': '68397696-0346-4baf-a6d7-19bb09791751', 'created_at': datetime.datetime(2023, 2, 9, 12, 56, 32, 749147), 'updated_at': datetime.datetime(2023, 2, 9, 12, 56, 32, 749378)}"]
+(hbnb) User.update('44e2b0b4-c894-4bed-9b63-57ea8d16a5d5', {'first_name': 'Caleb', 'age': 27})
+(hbnb) update User 68397696-0346-4baf-a6d7-19bb09791751 {'first_name': 'Joshua', 'age': 20}
+(hbnb) all
+["[User] (44e2b0b4-c894-4bed-9b63-57ea8d16a5d5) {'id': '44e2b0b4-c894-4bed-9b63-57ea8d16a5d5', 'created_at': datetime.datetime(2023, 2, 9, 12, 56, 24, 237836), 'updated_at': datetime.datetime(2023, 2, 9, 12, 59, 25, 552020), 'first_name': 'Caleb', 'age': 27}", "[User] (68397696-0346-4baf-a6d7-19bb09791751) {'id': '68397696-0346-4baf-a6d7-19bb09791751', 'created_at': datetime.datetime(2023, 2, 9, 12, 56, 32, 749147), 'updated_at': datetime.datetime(2023, 2, 9, 13, 0, 53, 107105), 'first_name': 'Joshua', 'age': 20}"]
+(hbnb) User.update('44e2b0b4-c894-4bed-9b63-57ea8d16a5d5', {'first_name': 'Praise', 'age': 18})
+(hbnb) all
+["[User] (44e2b0b4-c894-4bed-9b63-57ea8d16a5d5) {'id': '44e2b0b4-c894-4bed-9b63-57ea8d16a5d5', 'created_at': datetime.datetime(2023, 2, 9, 12, 56, 24, 237836), 'updated_at': datetime.datetime(2023, 2, 9, 13, 2, 9, 955866), 'first_name': 'Praise', 'age': 18}", "[User] (68397696-0346-4baf-a6d7-19bb09791751) {'id': '68397696-0346-4baf-a6d7-19bb09791751', 'created_at': datetime.datetime(2023, 2, 9, 12, 56, 32, 749147), 'updated_at': datetime.datetime(2023, 2, 9, 13, 0, 53, 107105), 'first_name': 'Joshua', 'age': 20}"]
+(hbnb) quit
+~/alx/AirBnB_clone $
+```
 ## Tests
 If you wish to run all the tests for this application,  the tests are located in the **tests/** directory and you can execute all of them by running:
 

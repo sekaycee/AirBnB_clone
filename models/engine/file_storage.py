@@ -83,7 +83,7 @@ class FileStorage:
     def get_all(self, model=''):
         ''' Find all instances or instances of given model '''
         F = FileStorage
-        if model and mo7del not in F.models:
+        if model and model not in F.models:
             raise ModelNotFoundError(model)
         result = []
         for key, val in F.__objects.items():

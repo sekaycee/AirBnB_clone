@@ -169,7 +169,7 @@ class HBNBCommand(Cmd):
         count = 0
         objs_ = storage.all()
         for k, v in objs_.items():
-            c = k.split('.') # c: list with class name and id
+            c = k.split('.')
             if c[0] == cname:
                 count += 1
         print(count)

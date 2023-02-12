@@ -753,8 +753,7 @@ class TestHBNBCommand_Update(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd(testCmd))
             self.assertEqual(correct, output.getvalue().strip())
-
-            with patch("sys.stdout", new=StringIO()) as output:
+        with patch("sys.stdout", new=StringIO()) as output:
             testCmd = "User.update('{}', 6)".format(testId)
             self.assertFalse(HBNBCommand().onecmd(testCmd))
             self.assertEqual(correct, output.getvalue().strip())
@@ -908,7 +907,7 @@ class TestHBNBCommand_Update(unittest.TestCase):
         self.assertFalse(HBNBCommand().onecmd(testCmd))
         test_dict = storage.all()["Review.{}".format(tId)].__dict__
         self.assertEqual("attr_value", test_dict["attr_name"])
-    
+
     def test_update_valid_int_attr_space_notation(self):
         with patch("sys.stdout", new=StringIO()) as output:
             HBNBCommand().onecmd("create Place")

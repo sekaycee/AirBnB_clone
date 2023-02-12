@@ -62,8 +62,8 @@ class TestFileStorage_Methods(unittest.TestCase):
         FileStorage._FileStorage__objects = {}
 
     def t_helper(self):
-        m_dict = { 'bm': BaseModel(), 'us': User(), 'st': State()
-            , 'pl': Place(), 'cy': City(), 'am': Amenity(), 'rv': Review() }
+        m_dict = {'bm': BaseModel(), 'us': User(), 'st': State(),
+                  'pl': Place(), 'cy': City(), 'am': Amenity(), 'rv': Review()}
         storage.new(m_dict['bm'])
         storage.new(m_dict['us'])
         storage.new(m_dict['st'])

@@ -10,8 +10,8 @@ class FileStorage:
     # private class attributes
     __file_path = "file.json"
     __objects = {}
-    models = ('BaseModel', 'Amenity', 'City', 'Place', 'Review'
-              , 'State', 'User')
+    models = ('BaseModel', 'Amenity', 'City', 'Place', 'Review', 'State',
+              'User')
 
     # constructor method
     def __init__(self):
@@ -46,14 +46,15 @@ class FileStorage:
         from models.state import State
         from models.user import User
 
-        d_dict = {'BaseModel': BaseModel, 'Amenity': Amenity, 'City': City
-            , 'Place': Place, 'Review': Review, 'State': State, 'User': User}
+        d_dict = {'BaseModel': BaseModel, 'Amenity': Amenity,
+                  'City': City, 'Place': Place, 'Review': Review,
+                  'State': State, 'User': User}
         if os.path.exists(FileStorage.__file_path) is True:
             with open(FileStorage.__file_path, 'r') as f:
                 for key, val in json.load(f).items():
                     self.new(d_dict[val['__class__']](**val))
 
-    ## crud methods to be invoked by the client (web/console)
+    # crud methods to be invoked by the client (web/console)
     def key_helper(self, model, o_id):
         ''' Find and return a key to an element of model by its id '''
         F = FileStorage

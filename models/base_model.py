@@ -21,7 +21,7 @@ class BaseModel:
                     value = datetime.fromisoformat(kwargs[key])
                 if key != '__class__':
                     setattr(self, key, value)
-    
+
     def __str__(self):
         ''' Override default implementation of __str__ method '''
         fmt = '[{}] ({}) {}'

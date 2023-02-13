@@ -52,5 +52,6 @@ class TestPlace(unittest.TestCase):
         self.assertIsInstance(self.p.created_at, datetime)
         self.assertIsInstance(self.p.updated_at, datetime)
 
+
 if __name__ == '__main__':
     unittest.main()

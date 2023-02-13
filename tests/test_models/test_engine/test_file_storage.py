@@ -13,11 +13,11 @@ class TestFileStorage(unittest.TestCase):
 
     my_model = BaseModel()
 
-    def testClassInstance(self):
+    def test_class_instance(self):
         ''' Check instance '''
         self.assertIsInstance(storage, FileStorage)
 
-    def testStoreBaseModel(self):
+    def test_store_base_model(self):
         ''' Test save and reload functions '''
         self.my_model.full_name = "BaseModel Instance"
         self.my_model.save()
@@ -27,7 +27,7 @@ class TestFileStorage(unittest.TestCase):
         key = bm_dict['__class__'] + "." + bm_dict['id']
         self.assertEqual(key in all_objs, True)
 
-    def testStoreBaseModel2(self):
+    def test_store_base_model_2(self):
         ''' Test save, reload and update functions '''
         self.my_model.my_name = "First name"
         self.my_model.save()
@@ -56,18 +56,18 @@ class TestFileStorage(unittest.TestCase):
         self.assertNotEqual(update1, update2)
         self.assertEqual(bm_dict['my_name'], "Second name")
 
-    def testHasAttributes(self):
+    def test_has_attributes(self):
         ''' Verify if attributes exist '''
         self.assertEqual(hasattr(FileStorage, '_FileStorage__file_path'), True)
         self.assertEqual(hasattr(FileStorage, '_FileStorage__objects'), True)
 
-    def testsave(self):
+    def test_save(self):
         ''' Verify if JSON exists '''
         self.my_model.save()
         self.assertEqual(os.path.exists(storage._FileStorage__file_path), True)
         self.assertEqual(storage.all(), storage._FileStorage__objects)
 
-    def testreload(self):
+    def test_reload(self):
         ''' Test if reload '''
         self.my_model.save()
         self.assertEqual(os.path.exists(storage._FileStorage__file_path), True)
@@ -78,7 +78,7 @@ class TestFileStorage(unittest.TestCase):
         for key, value in storage.all().items():
             self.assertEqual(dobj[key].to_dict(), value.to_dict())
 
-    def testSaveSelf(self):
+    def test_save_self(self):
         ''' Check save self '''
         msg = "save() takes 1 positional argument but 2 were given"
         with self.assertRaises(TypeError) as e:
@@ -86,7 +86,7 @@ class TestFileStorage(unittest.TestCase):
 
         self.assertEqual(str(e.exception), msg)
 
-    def test_save_FileStorage(self):
+    def test_save_file_storage(self):
         ''' Test if 'new' method is working good '''
         var1 = self.my_model.to_dict()
         new_key = var1['__class__'] + "." + var1['id']

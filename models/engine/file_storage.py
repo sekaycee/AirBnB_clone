@@ -6,7 +6,7 @@ from datetime import datetime
 
 
 class FileStorage:
-    ''' Serializes and deserializes JSON objects '''
+    ''' Serialize and deserialize JSON objects '''
     # private class attributes
     __file_path = "file.json"
     __objects = {}

@@ -35,8 +35,8 @@ class TestUser(unittest.TestCase):
         self.assertIsInstance(self.u.email, str)
         self.assertIsInstance(self.u.password, str)
         self.assertIsInstance(self.u.id, str)
-        self.assertIsInstance(self.u.created_at, datetime.datetime)
-        self.assertIsInstance(self.u.updated_at, datetime.datetime)
+        self.assertIsInstance(self.u.created_at, datetime)
+        self.assertIsInstance(self.u.updated_at, datetime)
 
 
 if __name__ == '__main__':

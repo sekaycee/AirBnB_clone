@@ -3,6 +3,7 @@
 import os
 import json
 from datetime import datetime
+from models.engine.error import *
 
 
 class FileStorage:
@@ -77,7 +78,7 @@ class FileStorage:
     def remove_by_id(self, model, o_id):
         ''' Find and delete an element of model by its id '''
         F = FileStorage
-        key = key_helper(model, o_id)
+        key = self.key_helper(model, o_id)
         del F.__objects[key]
         self.save()
 
@@ -95,7 +96,7 @@ class FileStorage:
     def edit_one(self, model, o_id, field, value):
         ''' Update an instance '''
         F = FileStorage
-        key = key_helper(model, o_id)
+        key = self.key_helper(model, o_id)
         if field in ('id', 'updated_at', 'created_at'):
             # not allowed to be updated
             return

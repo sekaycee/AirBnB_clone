@@ -8,6 +8,7 @@ from models.user import User
 from models.place import Place
 from models.state import State
 from models.review import Review
+from models.engine.error import *
 from models.amenity import Amenity
 from models.base_model import BaseModel
 
@@ -190,7 +191,7 @@ def parse(line, sep):
         for av in line.split(sep):
             a += av
         args = shlex.split(a)
-    else:
+    elif sep == ' ':
         args = line.split(sep)
     return args, len(args)
 

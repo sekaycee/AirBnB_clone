@@ -83,19 +83,18 @@ class TestFileStorage(unittest.TestCase):
         msg = "save() takes 1 positional argument but 2 were given"
         with self.assertRaises(TypeError) as e:
             FileStorage.save(self, 100)
-
         self.assertEqual(str(e.exception), msg)
 
     def test_save_file_storage(self):
         ''' Test if 'new' method is working good '''
-        var1 = self.my_model.to_dict()
-        new_key = var1['__class__'] + "." + var1['id']
+        f_var = self.my_model.to_dict()
+        new_key = f_var['__class__'] + "." + f_var['id']
         storage.save()
         with open("file.json", 'r') as fd:
-            var2 = json.load(fd)
-        new = var2[new_key]
+            s_var = json.load(fd)
+        new = s_var[new_key]
         for key in new:
-            self.assertEqual(var1[key], new[key])
+            self.assertEqual(f_var[key], new[key])
 
 
 if __name__ == '__main__':

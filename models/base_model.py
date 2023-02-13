@@ -16,11 +16,11 @@ class BaseModel:
             self.updated_at = self.created_at
             storage.new(self)
         else:
-            for key, value in kwargs.items():
+            for key, val in kwargs.items():
                 if key == 'created_at' or key == 'updated_at':
-                    value = datetime.fromisoformat(kwargs[key])
+                    val = datetime.fromisoformat(kwargs[key])
                 if key != '__class__':
-                    setattr(self, key, value)
+                    setattr(self, key, val)
 
     def __str__(self):
         ''' Override default implementation of __str__ method '''
@@ -35,13 +35,13 @@ class BaseModel:
     def to_dict(self):
         ''' Return a new dictionary with key and strformatted datetime '''
         dict_ = {}
-        for key, value in self.__dict__.items():
+        for key, val in self.__dict__.items():
             if key == 'created_at' or key == 'updated_at':
-                dict_[key] = value.isoformat()
+                dict_[key] = val.isoformat()
             else:
-                if not value:
+                if not val:
                     pass
                 else:
-                    dict_[key] = value
+                    dict_[key] = val
         dict_['__class__'] = type(self).__name__
         return (dict_)

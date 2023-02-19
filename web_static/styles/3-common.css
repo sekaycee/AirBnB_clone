@@ -1,5 +1,6 @@
 html, body {
 	min-height: 100vh;
+	box-shadow: border-box;
 }
 
 body {

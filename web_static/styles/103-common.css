@@ -28,3 +28,15 @@ ul {
   padding: 10px;
   list-style: none;
 }
+
+@media (max-width: 400px) {
+	.container {
+		max-width: 400px;
+	}
+}
+
+@media (max-width: 800px) {
+	.container {
+		max-width: 800px;	
+	}
+}

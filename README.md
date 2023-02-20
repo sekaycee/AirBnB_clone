@@ -2,13 +2,16 @@
 ![HBnB](./hbnb.png)
 
 ## Synopsis
+
 This is the initial phase of a four-phase project. Aiming to create a basic clone of the [AirBnB](https://airbnb.com) web app. In this initial phase, a basic console was created using the Cmd Python module. To manage the objects of the whole project. It's able to implement the methods create, show, update, all, and destroy, to the existing classes and subclasses.
 
 ## Technologies
+
 * Scripts are written in Python3
 * Tested on Ubuntu and Windows
 
 ## Files
+
 This repository contains the following files:
 
 |   **File**   |   **Description**   |
@@ -34,8 +37,11 @@ This repository contains the following files:
 |[test_console.py](./tests/test_console.py) | unittests for console |
 
 ## Features
+
 ### Command Interpreter
+
 #### Description
+
 The Command Interpreter is used to manage the whole application's functionality from the command line, such as:
 + Create a new object.
 + Retrieve an object from a file, database, etc.
@@ -44,11 +50,13 @@ The Command Interpreter is used to manage the whole application's functionality 
 + Destroy an object.
 
 #### Installation
+
 Fork and clone the repository using:
 
 ```$ git clone git@github.com:<username>/AirBnB_clone.git```
 
 #### Usage
+
 Launch the console application in interactive mode by running:
 
 ```$ ./console.py ```
@@ -58,6 +66,7 @@ or to use the non-interactive mode run:
 ```$ echo "your-command-goes-here" | ./console.py ```
 
 #### Commands
+
 | Commands | Description | Usage |
 | -------- | ----------- | ----- |
 | **help** or **?**| Displays the documented commands. | **help** |
@@ -70,7 +79,9 @@ or to use the non-interactive mode run:
 | **update** | Updates an instance based on the class name and id by adding or updating attribute | **update** \<class_name class_id key value\> |
 
 #### Examples
+
 ##### No 1
+
 ```
 ~/alx/AirBnB_clone $ ./console.py
 (hbnb) create User
@@ -88,7 +99,9 @@ c2b0b1e2-4f60-4a5b-a8fa-901fa4ecee2c
 (hbnb) all
 []
 ```
+
 ##### No 2
+
 ```
 ➜  AirBnB_clone git:(feature) ✗ ./console.py
 (hbnb) User.create
@@ -113,6 +126,7 @@ e6ee5344-04ef-454d-84e4-ba6fc610f1b4
 ```
 
 ##### No 3
+
 ```
 ~/alx/AirBnB_clone $ ./console.py
 (hbnb) create User
@@ -131,7 +145,9 @@ e6ee5344-04ef-454d-84e4-ba6fc610f1b4
 (hbnb) quit
 ~/alx/AirBnB_clone $
 ```
+
 ## Tests
+
 If you wish to run all the tests for this application,  the tests are located in the **tests/** directory and you can execute all of them by running:
 
 ```$ python3 -m unittest discover tests ```

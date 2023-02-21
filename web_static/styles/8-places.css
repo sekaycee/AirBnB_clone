@@ -57,32 +57,23 @@
 
 .max_guest, .number_rooms, .number_bathrooms {
     width: 100px;
+    margin: auto;
+    height: 50px;
     text-align: center;
-    margin: auto;
+    background-repeat: no-repeat;
+    background-position: top center;
 }
 
-.information .max_guest .guest_icon {
+.max_guest {
     background: url("../images/icon_group.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 50px;
-    margin: auto;
 }
 
-.information .number_rooms .rooms_icon{
+.number_rooms {
     background: url("../images/icon_bed.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 50px;
-    margin: auto;
 }
 
-.information .number_bathrooms .bath_icon{
+.number_bathrooms {
     background: url("../images/icon_bath.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 50px;
-    margin: auto;
 }
 
 .user {
